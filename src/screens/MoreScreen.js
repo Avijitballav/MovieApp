@@ -69,15 +69,15 @@ const MoreScreen = props => {
     console.log('out !!!!!');
 
     Alert.alert(
-      'Alert!',
-      'Do want to logout?',
+      languages[languageValue].Alert,
+      languages[languageValue].Do_want_to_logout,
       [
         {
-          text: 'Cancel',
+          text:languages[languageValue].Cancel,
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
-        {text: 'OK', onPress: () => logoutval()},
+        {text: languages[languageValue].OK, onPress: () => logoutval()},
       ],
       {cancelable: false},
     );

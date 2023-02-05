@@ -34,20 +34,20 @@ const LoginScreen = ( props ) => {
         if (inputEmail == '' || inputEmail == null || inputEmail == undefined) {
          
             Alert.alert(
-                "Error",
-                "Email is required",
+                languages[languageValue].Alert,
+                languages[languageValue].Email_is_required,
                 [
-                { text: "OK", onPress: () => console.log("OK Pressed") }
+                { text: languages[languageValue].OK, onPress: () => console.log("OK Pressed") }
                 ],
                 { cancelable: false }
             );
         }
         else if(!EMAIL_REGX.test(inputEmail)){
             Alert.alert(
-                "Error",
-                "Enter valid email",
+                languages[languageValue].Alert,
+                languages[languageValue].Enter_valid_email,
                 [
-                { text: "OK", onPress: () => console.log("OK Pressed") }
+                { text: languages[languageValue].OK, onPress: () => console.log("OK Pressed") }
                 ],
                 { cancelable: false }
             );
@@ -58,20 +58,20 @@ const LoginScreen = ( props ) => {
             inputPassword == undefined
         ) {
             Alert.alert(
-                "Error",
-                "Password is required",
+                languages[languageValue].Alert,
+                languages[languageValue].Password_is_required,
                 [
-                { text: "OK", onPress: () => console.log("OK Pressed") }
+                { text: languages[languageValue].OK, onPress: () => console.log("OK Pressed") }
                 ],
                 { cancelable: false }
             );
       
         } else if(!PasswordRegex.test(inputPassword)){
             Alert.alert(
-                "Error",
-                "Password must be between 8 - 15 characters(Alpha Number with at least one Capital Letter and 1 Special Character)",
+                languages[languageValue].Alert,
+                languages[languageValue].Password_must_be,
                 [
-                { text: "OK", onPress: () => console.log("OK Pressed") }
+                { text: languages[languageValue].OK, onPress: () => console.log("OK Pressed") }
                 ],
                 { cancelable: false }
             );
@@ -131,7 +131,8 @@ const LoginScreen = ( props ) => {
                             </View>
                             
                             <View style={styles.inputBlock}>
-                                <TouchableOpacity style={styles.loginBtWrap} onPress={actionLogin}>
+                                <TouchableOpacity style={styles.loginBtWrap} 
+                                onPress={actionLogin}>
                                     <View style={styles.loginButton}>
                                         <Text style={styles.loginButtonTxt}>{languages[languageValue].submit}</Text>
                                     </View>
