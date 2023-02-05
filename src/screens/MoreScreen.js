@@ -26,6 +26,7 @@ import {textColor} from '../constants/colors';
 import {UserInfo} from '../../src/constants/config';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import I18n from '../i18n';
 
 const MoreScreen = props => {
   const client = useApolloClient();
@@ -102,7 +103,6 @@ const MoreScreen = props => {
         textStyle={styles.spinnerTextStyle}
       />
       <TouchableOpacity
-        onPress={() => navigation.navigate('Profile')}
         style={styles.appBar}>
         <Image
           style={styles.appBarImg}     
@@ -113,8 +113,8 @@ const MoreScreen = props => {
           <TouchableOpacity >
            
               <Text style={styles.appBarTitleTextDwn(fontSizeValue)}>
-                {' '}
                 {languages[languageValue].ViewProfile}
+               
               </Text>
            
           </TouchableOpacity>

@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet, Keyboard, Platform } f
 import { connect } from 'react-redux';
 import { darkbackground, lightbackground } from '../constants/colors';
 import { languages } from '../locales/languages';
+import I18n from '../i18n';
 
 const MyTabBar = (props) => {
   const { state, descriptors, navigation } = props;

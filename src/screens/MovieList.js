@@ -10,7 +10,7 @@ import React, {useState, useEffect} from 'react';
 import {useApolloClient} from '@apollo/client';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import styles from '../styles/switchcommunity';
+import styles from '../styles/movielist';
 import {connect} from 'react-redux';
 import {languages} from '../locales/languages';
 import {textColor} from '../constants/colors';
@@ -18,8 +18,10 @@ import {
  ImageURL
 } from '../constants/config';
 import {
-  switch_communitiesList
+  movie_List
 } from '../redux/actions/userAuth';
+
+import I18n from '../i18n';
 
 
 const MovieList = props => {
@@ -28,7 +30,7 @@ const MovieList = props => {
   //  Language Update *********
 
   const {languageValue} = props;
-  
+  console.log('Current Lan:::', languages[languageValue].Home);
 
   //**** Font Size Update  ************/
   const {fontSizeValue} = props;
@@ -48,7 +50,7 @@ const MovieList = props => {
 
     try {
       await props
-        .switch_communitiesList(client)
+        .movie_List(client)
         .then(async response => {
           console.log('response log', JSON.stringify(response));
           setLoading(false);
@@ -87,7 +89,7 @@ const MovieList = props => {
             style={
               styles.titleText(fontSizeValue)
             }>
-            {languages[languageValue].Home}
+            {languages[languageValue].Home} 
           </Text>
         </View>
       </View>
@@ -156,8 +158,8 @@ const mapStateToProps = ({font, language}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  switch_communitiesList: (client, inputs) =>
-    dispatch(switch_communitiesList(client, inputs)),
+  movie_List: (client, inputs) =>
+    dispatch(movie_List(client, inputs)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

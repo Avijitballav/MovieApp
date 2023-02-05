@@ -33,16 +33,20 @@
      const bootstrapAsync = async () => {
       
       try {
-         //******* User Details ****** */ 
-         let useDetailsTemp = await AsyncStorage.getItem(UserInfo);     
-         console.log("useDetails",useDetailsTemp);
-        dispatch(storeUserDetails(useDetailsTemp));
 
-         //**** Language Update ***** */
-         languagepdate = await AsyncStorage.getItem('language');
-         console.log("language_key", JSON.parse(languagepdate).language_key);
-         await props.s(JSON.parse(languagepdate).language_key);
-         
+           //******* User Details ****** */ 
+           let useDetailsTemp = await AsyncStorage.getItem(UserInfo);     
+           console.log("useDetails",useDetailsTemp);
+          dispatch(storeUserDetails(useDetailsTemp));
+
+        //**** Language Update ***** */
+        languagepdate = await AsyncStorage.getItem('language');
+        console.log("language_key 123", JSON.parse(languagepdate).language_key);
+        await props.languageChanges(JSON.parse(languagepdate).language_key);
+ 
+      
+
+        
        } catch (e) {
          // Restoring token failed
        }
@@ -76,9 +80,9 @@
    );
  };
 
- const mapDispatchToProps = dispatch => ({
-   languageChanges: (inputs) => dispatch(languageChanges(inputs))
- });
+const mapDispatchToProps = dispatch => ({
+    languageChanges: (inputs) => dispatch(languageChanges(inputs)),
+});
  
  
  export default connect(mapDispatchToProps)(App);

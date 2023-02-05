@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { EMAIL_REGX,UserInfo,PasswordRegex } from '../../src/constants/config';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import I18n from '../i18n';
+import {languages} from '../locales/languages';
 
 const LoginScreen = ( props ) => {
     const client = useApolloClient();
@@ -23,6 +25,10 @@ const LoginScreen = ( props ) => {
     const [inputEmail, setInputEmail] = useState('');
     const [inputPassword, setInputPassword] = useState('');
 
+    //  Language Update *********
+
+    const {languageValue} = props;
+  console.log('Current Lan:::', languages[languageValue].Home);
 
     const actionLogin = async () => {
         if (inputEmail == '' || inputEmail == null || inputEmail == undefined) {
@@ -103,7 +109,7 @@ const LoginScreen = ( props ) => {
                                         console.log(inputEmail);
                                     }}
                                     style={styles.inputTxt}
-                                    placeholder="Enter Email ID"
+                                    placeholder= {languages[languageValue].Enteryouremail}
                                     keyboardType="email-address"
                                     autoCapitalize="none"
                                     placeholderTextColor="#086c2e"
@@ -117,7 +123,7 @@ const LoginScreen = ( props ) => {
                                         setInputPassword(text);
                                     }}
                                     style={styles.inputTxt} 
-                                    placeholder="Password"
+                                    placeholder={languages[languageValue].Enteryourpassword}
                                     maxLength={15}
                                     secureTextEntry={true}
                                     placeholderTextColor="#086c2e"
@@ -127,7 +133,7 @@ const LoginScreen = ( props ) => {
                             <View style={styles.inputBlock}>
                                 <TouchableOpacity style={styles.loginBtWrap} onPress={actionLogin}>
                                     <View style={styles.loginButton}>
-                                        <Text style={styles.loginButtonTxt}>Sign in</Text>
+                                        <Text style={styles.loginButtonTxt}>{languages[languageValue].submit}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -143,9 +149,12 @@ const LoginScreen = ( props ) => {
     );
 };
 
-const mapStateToProps = ({ user }) => ({
-    // userDetails: user.userDetails
-});
+const mapStateToProps = ({language}) => {
+    console.log('language ' + language.currentlanguage);
+    return {  
+      languageValue: language.currentlanguage,
+    };
+  };
   
 const mapDispatchToProps = dispatch => ({
     storeUserDetails: inputs => dispatch(storeUserDetails(inputs)),

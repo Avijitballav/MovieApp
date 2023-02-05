@@ -46,6 +46,7 @@
     "react-native-geolocation-service": "^5.3.1",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-get-location": "^2.2.1",
+    "react-native-i18n": "^2.0.15",
     "react-native-image-crop-picker": "^0.38.0",
     "react-native-inappbrowser-reborn": "^3.4.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",

@@ -12,7 +12,7 @@ const storeUserDetails = userToken => {
   return {type: RESTORE_TOKEN, payload: userToken};
 };
 
-const switch_communitiesList = (client) => {
+const movie_List = (client) => {
   return async dispatch => {
     return new Promise(async (resolve, reject) => {
       dispatch({type: USER_SWITCHCOMMUNITY_PENDING});
@@ -49,5 +49,5 @@ export {
   USER_SWITCHCOMMUNITY_ERROR,
   USER_SWITCHCOMMUNITY_PENDING,
   storeUserDetails,
-  switch_communitiesList
+  movie_List
 };

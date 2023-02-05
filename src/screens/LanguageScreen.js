@@ -6,6 +6,7 @@ import { languages } from '../locales/languages';
 import { connect } from 'react-redux';
 import { languageChanges } from '../redux/actions/languageActions';
 import AsyncStorage from '@react-native-community/async-storage';
+import I18n from '../i18n';
 
 // export default function LanguageScreen({ navigation }) {
 
@@ -23,21 +24,19 @@ const LanguageScreen = (props) => {
     }, [checked]);
 
     const languageChange = async () => {
-        await AsyncStorage.setItem('language',checked)
+        await AsyncStorage.setItem('language', JSON.stringify({language_key: checked}))
         await props.languageChanges(checked);
+       
     }
 
-    console.log("Current Lan:::", languages[languageValue].Home);
-
-
-
+   
     //**** Font Size Update  ************/ 
     const { fontSizeValue } = props;
     console.log("fontSizeValue:::", fontSizeValue);
 
     const { navigation } = props;
 
-    const [userOption, setUserOption] = useState(false);
+    const [userOption, setUserOption] = useState('');
     
 
 
@@ -51,7 +50,7 @@ const LanguageScreen = (props) => {
               
                 <View style={styles.subHeading}>
                     <Text style={styles.subHeadingTxt(fontSizeValue)}>
-                        {languages[languageValue].descriptionoflanguage}
+                    {languages[languageValue].descriptionoflanguage_more}
                     </Text>
                 </View>
                {/* <ScrollView> */}
@@ -75,15 +74,15 @@ const LanguageScreen = (props) => {
                                 </View>
                             </View>
                            
-                            <View style={languageValue === "Hindi" ? styles.lanCont2 : styles.lanCont2 }>
+                            <View style={languageValue === "Arabic" ? styles.lanCont2 : styles.lanCont2 }>
                                 <View style={styles.txtView}>
-                                    <Text style={languageValue === "Hindi"? styles.FontsizetextLink(fontSizeValue) : styles.FontsizetextLink2(fontSizeValue)}>Hindi</Text>
+                                    <Text style={languageValue === "Arabic"? styles.FontsizetextLink(fontSizeValue) : styles.FontsizetextLink2(fontSizeValue)}>عربي</Text>
                                 </View>
                                 <View style={styles.radioView}>
                                     <RadioButton.Android
                                         onValueChange={() => setUserOption(checked.value)}
                                         color='#ffff'
-                                        value="Hindi" />
+                                        value="Arabic" />
                                 </View>
                             </View>
                         </RadioButton.Group>
